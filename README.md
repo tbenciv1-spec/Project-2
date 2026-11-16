@@ -11,7 +11,7 @@ Course project: MIS 581S Project 2 (Binghamton University). Not an official DSNY
 4. Export the review log as CSV. Reviews are stored only in the browser.
 
 ## How to run
-Open `index.html` in a browser (no build step, no server, no API keys). Live version: [add Vercel URL].
+Open `index.html` in a browser (no build step, no server, no API keys). Live version: http://project-2-sigma-indol.vercel.app/.
 
 ## Files
 - `index.html`, `style.css`, `app.js`: the app.
