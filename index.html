@@ -10,6 +10,7 @@
 <header>
   <h1>Day-5 Flag Review Tool</h1>
   <p class="sub">For a DSNY supervisor deciding whether to review Missed Collection requests that are still open after N days. Built from NYC 311 data (Mar 9 to May 29, 2026). Historical replay, not live data.</p>
+  <p class="sub"><strong>Try it:</strong> change the three boxes in Section 1, then read the results in Section 2. Green means your team could handle the flagged requests. Red means they could not.</p>
 </header>
 
 <main>
@@ -20,33 +21,46 @@
   <div class="controls">
     <div class="field">
       <label for="flagN">Flag a request if still open after N days</label>
-      <select id="flagN">
+      <select id="flagN" aria-describedby="help-n">
         <option>2</option><option>3</option><option>4</option><option selected>5</option><option>6</option>
       </select>
+      <p class="hint" id="help-n">Flag a request once it has been open this many days.</p>
     </div>
     <div class="field">
       <label for="lateDays">"Late" means more than (days)</label>
-      <input id="lateDays" type="number" inputmode="numeric" min="1" max="10" step="1" value="5">
+      <input id="lateDays" type="number" inputmode="numeric" min="1" max="10" step="1" value="5" aria-describedby="help-late">
+      <p class="hint" id="help-late">Count a request as late if it took longer than this many days. This is only used to score the rule.</p>
       <p class="err" id="err-late" role="alert"></p>
     </div>
     <div class="field">
       <label for="cap">Workload cap (flagged requests per day)</label>
-      <input id="cap" type="number" inputmode="decimal" min="0.5" max="100" step="0.5" value="5">
+      <input id="cap" type="number" inputmode="decimal" min="0.5" max="100" step="0.5" value="5" aria-describedby="help-cap">
+      <p class="hint" id="help-cap">The most flagged requests your team can review in one day. You choose this number. It is your guess about your team's capacity, not something the data tells us.</p>
       <p class="err" id="err-cap" role="alert"></p>
     </div>
   </div>
-  <p class="hint">The cap is an assumption you set: how many flagged requests your team can review each day.</p>
+  <p class="hint">Change one box at a time so you can see what each one does.</p>
 </section>
 
 <section class="panel" aria-labelledby="h-result">
   <h2 id="h-result">2. What the rule would have flagged</h2>
+  <p class="hint">This is your three settings above, replayed on past requests.</p>
   <div class="cards" id="cards"></div>
   <p id="verdict" class="verdict" role="status"></p>
+  <ul class="hint legend">
+    <li><strong>Requests flagged:</strong> how many requests this rule would have flagged in total.</li>
+    <li><strong>Flagged per day:</strong> that total divided by the 82 days. Compare this number with your cap.</li>
+    <li><strong>Flags truly late:</strong> of the flagged requests, the share that really took longer than your late line.</li>
+    <li><strong>Late requests caught:</strong> of all late requests, the share this rule flagged.</li>
+    <li><strong>Red or green:</strong> red means this rule flags more per day than your cap. Try a larger N, or ask whether your cap is realistic.</li>
+  </ul>
+  <p class="hint"><strong>Which rule fits?</strong> One way to choose: pick the rule that flags as many late requests as possible while staying green.</p>
   <p class="hint" id="windowNote"></p>
 </section>
 
 <section class="panel" aria-labelledby="h-compare">
   <h2 id="h-compare">3. Compare flag rules</h2>
+  <p class="hint">Each row shows the same results for a different N, so you can compare rules without changing the box above.</p>
   <div class="tablewrap">
   <table id="compareTable">
     <caption class="sr">Flag rule comparison for N = 2 to 6</caption>
