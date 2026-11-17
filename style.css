@@ -41,3 +41,6 @@ td input,td select{min-width:110px;padding:6px;min-height:40px}
 .summary{border:1px solid var(--line);border-radius:8px;padding:10px 12px}
 footer{color:var(--muted);font-size:.85rem;padding-bottom:32px}
 @media (max-width:560px){body{font-size:15px}.bar{grid-template-columns:56px 1fr 50px}}
+
+.legend{padding-left:1.2rem;margin:.6rem 0}
+.legend li{margin:.2rem 0}
